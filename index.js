@@ -64,8 +64,11 @@ app.put('/api/todos/:id', function (req,res){
 
 app.delete('/api/todos/:id', function(req, res) {
     const id = req.params.id;
+    if(id in data) {
     delete data[id]
     res.send('data deleted')
+    return; }    
+res.status(400).send('Error');
 })
 
 app.listen(3000, ()=>{
